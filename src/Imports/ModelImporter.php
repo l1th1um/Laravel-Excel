@@ -76,10 +76,12 @@ class ModelImporter
                     $rowArray = $import->map($rowArray);
                 }
 
-                $this->manager->add(
-                    $row->getIndex(),
-                    $rowArray
-                );
+                if (is_array($rowArray)) {
+                    $this->manager->add(
+                        $row->getIndex(),
+                        $rowArray
+                    );
+                }
 
                 // Flush each batch.
                 if (($i % $batchSize) === 0) {
