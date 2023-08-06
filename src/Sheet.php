@@ -381,7 +381,8 @@ class Sheet
     public function toCollection($import, int $startRow = null, $nullValue = null, $calculateFormulas = false, $formatData = false): Collection
     {
         $rows = $this->toArray($import, $startRow, $nullValue, $calculateFormulas, $formatData);
-
+        $rows = array_filter($rows);
+        
         return new Collection(array_map(function (array $row) {
             return new Collection($row);
         }, $rows));
